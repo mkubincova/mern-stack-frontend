@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { IWorkout } from '../vite-env';
 import Workout from '../components/Workout';
+import WorkoutForm from '../components/WorkoutForm';
 
 export default function Home() {
     const [workouts, setWorkouts] = useState<IWorkout[]>([]);
@@ -25,6 +26,7 @@ export default function Home() {
                     <Workout key={workout._id} workout={workout} />
                 ))}
             </div>
+            <WorkoutForm />
         </div>
     );
 }
