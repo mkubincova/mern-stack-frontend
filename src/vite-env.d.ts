@@ -9,3 +9,15 @@ export interface IWorkout {
     updatedAt: String;
     __v: Number;
 }
+
+export interface IAction {
+    readonly type: string;
+    readonly payload?: any;
+}
+
+export interface IContext {
+    state: {
+        workouts: IWorkout[];
+    };
+    dispatch: React.Dispatch<{ type: string; payload: unknown; }>;
+}

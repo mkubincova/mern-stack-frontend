@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
-import { IWorkout } from '../vite-env';
+import { useEffect } from 'react';
 import Workout from '../components/Workout';
 import WorkoutForm from '../components/WorkoutForm';
+import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
+
 
 export default function Home() {
-    const [workouts, setWorkouts] = useState<IWorkout[]>([]);
+    const { state, dispatch } = useWorkoutsContext();
 
     useEffect(() => {
         const fetchWokouts = async () => {
@@ -12,7 +13,7 @@ export default function Home() {
             const json = await res.json();
 
             if (res.ok) {
-                setWorkouts(json);
+                dispatch({ type: 'SET_WORKOUTS', payload: json });
             }
         };
 
@@ -22,7 +23,7 @@ export default function Home() {
     return (
         <div className="home">
             <div className="workouts">
-                {workouts.length > 0 && workouts.map((workout) => (
+                {state.workouts.length > 0 && state.workouts.map((workout) => (
                     <Workout key={workout._id} workout={workout} />
                 ))}
             </div>
