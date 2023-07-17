@@ -5,8 +5,8 @@ export interface IWorkout {
     title: String;
     reps: Number;
     load: Number;
-    createdAt: String;
-    updatedAt: String;
+    createdAt: Date;
+    updatedAt: Date;
     __v: Number;
 }
 

@@ -18,7 +18,7 @@ export default function Home() {
         };
 
         fetchWokouts();
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className="home">

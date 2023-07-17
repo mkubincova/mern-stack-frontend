@@ -1,6 +1,9 @@
 import { IWorkout } from '../vite-env';
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 
+// date fns
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+
 type Props = {
     workout: IWorkout;
 };
@@ -15,13 +18,14 @@ export default function Workout({ workout }: Props) {
 
         if (res.ok) dispatch({ type: 'DELETE_WORKOUT', payload: json });
     };
+
     return (
         <div className="workout-details">
             <h4>{workout.title}</h4>
             <p><strong>Load (kg):</strong> {workout.load.toString()}</p>
             <p><strong>Reps:</strong> {workout.reps.toString()}</p>
-            <p>{workout.createdAt}</p>
-            <span onClick={handleClick}>delete</span>
+            <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
+            <span onClick={handleClick} className='material-symbols-outlined'>delete</span>
         </div>
     );
 }
