@@ -15,9 +15,7 @@ export interface IAction {
     readonly payload?: any;
 }
 
-export interface IContext {
-    state: {
-        workouts: IWorkout[];
-    };
-    dispatch: React.Dispatch<{ type: string; payload: unknown; }>;
+export interface IWorkoutsContext {
+    workouts: IWorkout[];
+    dispatch: React.Dispatch<IAction>;
 }

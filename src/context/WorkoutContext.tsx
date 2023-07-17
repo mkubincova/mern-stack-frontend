@@ -1,18 +1,18 @@
 import { createContext, useReducer } from "react";
-import { IWorkout, IAction, IContext } from '../vite-env';
+import { IWorkout, IAction, IWorkoutsContext } from '../vite-env';
 
 
-type InitialStateType = {
+type WorkoutsStateType = {
     workouts: IWorkout[];
 };
 
 const initialState = {
     workouts: []
-};
+} as WorkoutsStateType;
 
-export const WorkoutsContext = createContext<IContext | null>(null);
+export const WorkoutsContext = createContext<IWorkoutsContext>({} as IWorkoutsContext);
 
-export const workoutsReducer = (state: InitialStateType, action: IAction) => {
+export const workoutsReducer = (state: WorkoutsStateType, action: IAction) => {
     switch (action.type) {
         case 'SET_WORKOUTS':
             return {
@@ -35,7 +35,7 @@ export const WorkoutContextProvider = ({ children }: { children: React.ReactNode
     const [state, dispatch] = useReducer(workoutsReducer, initialState);
 
     return (
-        <WorkoutsContext.Provider value={{ state, dispatch }}>
+        <WorkoutsContext.Provider value={{ ...state, dispatch }}>
             {children}
         </WorkoutsContext.Provider>
     );

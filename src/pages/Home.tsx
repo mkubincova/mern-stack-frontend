@@ -5,7 +5,7 @@ import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 
 
 export default function Home() {
-    const { state, dispatch } = useWorkoutsContext();
+    const { workouts, dispatch } = useWorkoutsContext();
 
     useEffect(() => {
         const fetchWokouts = async () => {
@@ -23,7 +23,7 @@ export default function Home() {
     return (
         <div className="home">
             <div className="workouts">
-                {state.workouts.length > 0 && state.workouts.map((workout) => (
+                {workouts.length > 0 && workouts.map((workout) => (
                     <Workout key={workout._id} workout={workout} />
                 ))}
             </div>
