@@ -19,3 +19,13 @@ export interface IWorkoutsContext {
     workouts: IWorkout[];
     dispatch: React.Dispatch<IAction>;
 }
+
+export interface IUser {
+    email: string,
+    token?: string;
+}
+
+export interface IUserContext {
+    user: IUser | null;
+    dispatch: React.Dispatch<IAction>;
+}
