@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import { IUser, IAction, IUserContext } from '../vite-env';
 
 
@@ -9,6 +9,7 @@ type UserStateType = {
 const initialState = {
     user: null,
 } as UserStateType;
+
 
 export const AuthContext = createContext<IUserContext>({} as IUserContext);
 
@@ -25,6 +26,14 @@ export const authReducer = (state: UserStateType, action: IAction) => {
 
 export const AuthContextProvider = ({ children }: { children: React.ReactNode; }) => {
     const [state, dispatch] = useReducer(authReducer, initialState);
+
+    useEffect(() => {
+        const user = localStorage.getItem('user');
+
+        if (user) {
+            dispatch({ type: 'LOGIN', payload: JSON.stringify(user) });
+        }
+    }, []);
 
     console.log('AuthContext state: ', state);
 
