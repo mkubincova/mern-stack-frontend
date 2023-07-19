@@ -31,7 +31,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode; }
         const user = localStorage.getItem('user');
 
         if (user) {
-            dispatch({ type: 'LOGIN', payload: JSON.stringify(user) });
+            dispatch({ type: 'LOGIN', payload: JSON.parse(user) });
         }
     }, []);
 
